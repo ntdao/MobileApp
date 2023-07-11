@@ -14,26 +14,17 @@ import androidx.appcompat.app.AlertDialog;
 
 import android.graphics.drawable.ColorDrawable;
 
-import androidx.annotation.NonNull;
-
 import android.widget.Toast;
 
+import com.example.mobileprogramming.LoginRequest;
+import com.example.mobileprogramming.LoginResponse;
 import com.example.mobileprogramming.R;
-import com.example.mobileprogramming.mockdata.MockData;
-import com.example.mobileprogramming.model.User;
+import com.example.mobileprogramming.network.ApiService;
 import com.example.mobileprogramming.utils.ValidateInfo;
-//import com.google.android.gms.tasks.OnCompleteListener;
-//import com.google.android.gms.tasks.OnFailureListener;
-//import com.google.android.gms.tasks.OnSuccessListener;
-//import com.google.android.gms.tasks.Task;
-//import com.google.firebase.auth.AuthResult;
-//import com.google.firebase.auth.FirebaseAuth;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -41,10 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText loginEmail, loginPassword;
     private TextView signupRedirectText;
     private Button loginButton;
-//    private FirebaseAuth auth;
     private TextView forgotPassword;
-//    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-//    private DatabaseReference usersRef = database.getReference("users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +45,12 @@ public class LoginActivity extends AppCompatActivity {
         signupRedirectText = findViewById(R.id.signUpRedirectText);
         forgotPassword = findViewById(R.id.forgot_password);
 
-//        auth = FirebaseAuth.getInstance();
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean check1 = ValidateInfo.isValidEmail(loginEmail);
                 boolean check2 = ValidateInfo.isValid(loginPassword);
-                if (! (check1 && check2)) {
+                if (!(check1 && check2)) {
                     return;
                 }
                 checkUser();
@@ -97,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (!check) {
                             return;
                         }
+                        // goi api forgot-password
 //                        auth.sendPasswordResetEmail(userEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
 //                            @Override
 //                            public void onComplete(@NonNull Task<Void> task) {
@@ -128,33 +115,36 @@ public class LoginActivity extends AppCompatActivity {
         String email = loginEmail.getText().toString().trim();
         String password = loginPassword.getText().toString().trim();
 
-        List<User> users = new MockData().users;
-        Log.i("User list:", users.toString());
+        LoginRequest request = new LoginRequest(email, password);
+        Call<LoginResponse> call = ApiService.apiService.login(request);
 
-        for (User u : users) {
-            if (u.getEmail().equals(email)) {
-                if (u.getPassword().equals(password)) {
-                    Log.i("User",u.toString());
+        call.enqueue(new Callback<>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if (response.isSuccessful()) {
+                    // Đăng nhập thành công
+                    // Xử lý dữ liệu đăng nhập ở đây
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//            intent.putExtra("name", user.getName());
+//            intent.putExtra("email", user.getEmail());
+//            intent.putExtra("password", user.getPassword());
+                    startActivity(intent);
+
                     Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
+                } else {
+                    // Xử lý lỗi đăng nhập
+                    Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 }
-            }else {
-                Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
             }
-        }
 
-
-//        User user = users.stream().filter(a -> a.getEmail().equals(email)).collect(Collectors.toList()).get(0);
-//        Log.i("User",user.toString());
-//        if(user == null) {
-//            if (user.getPassword().equals(password)) {
-//                Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//                finish();
-//            }
-
-
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                // Xử lý lỗi kết nối hoặc lỗi mạng
+                Log.e("Error Login", t.getMessage());
+                Toast.makeText(LoginActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+            }
+        });
 //        auth.signInWithEmailAndPassword(email, password)
 //                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
 //                    @Override
@@ -203,4 +193,4 @@ public class LoginActivity extends AppCompatActivity {
 //            }
 //        });
     }
-}
+            }

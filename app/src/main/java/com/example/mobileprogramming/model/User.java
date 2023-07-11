@@ -27,6 +27,12 @@ public class User {
         this.birthday = birthday;
     }
 
+    public User(String name, String password, String email) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+    }
+
     public User(String phoneNumber, String password, String name, String birthday, String email, String address) {
         this.phoneNumber = phoneNumber;
         this.password = password;

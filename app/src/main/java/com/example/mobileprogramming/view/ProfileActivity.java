@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,8 +20,7 @@ import com.example.mobileprogramming.R;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    TextView profileName, profileEmail, profileUsername, profilePassword;
-    TextView titleName, titleUsername;
+    TextView profileName, profileEmail, profilePassword;
     Button editProfile;
 
     @Override
@@ -30,7 +30,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         profileName = findViewById(R.id.profileName);
         profileEmail = findViewById(R.id.profileEmail);
-        profileUsername = findViewById(R.id.profileUsername);
         profilePassword = findViewById(R.id.profilePassword);
         editProfile = findViewById(R.id.editButton);
 
@@ -43,6 +42,15 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        Intent intent = getIntent();
+        String nameUser = intent.getStringExtra("name");
+        String emailUser = intent.getStringExtra("email");
+        String passwordUser = intent.getStringExtra("password");
+
+        profileName.setText(nameUser);
+        profileEmail.setText(emailUser);
+        profilePassword.setText(passwordUser);
+
 //        showAllUserData();
 
         editProfile.setOnClickListener(new View.OnClickListener() {
@@ -50,29 +58,36 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                passUserData();
                 Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+                intent.putExtra("name", nameUser);
+                intent.putExtra("email", emailUser);
+                intent.putExtra("password", passwordUser);
                 startActivity(intent);
             }
         });
 
     }
 
-    public void showAllUserData(){
-        Intent intent = getIntent();
-        String nameUser = intent.getStringExtra("name");
-        String emailUser = intent.getStringExtra("email");
-        String usernameUser = intent.getStringExtra("username");
-        String passwordUser = intent.getStringExtra("password");
+//    public void showAllUserData(){
+//        Intent intent = getIntent();
+//        String nameUser = intent.getStringExtra("name");
+//        String emailUser = intent.getStringExtra("email");
+//        String passwordUser = intent.getStringExtra("password");
+//
+//        profileName.setText(nameUser);
+//        profileEmail.setText(emailUser);
+//        profilePassword.setText(passwordUser);
+//    }
 
-        titleName.setText(nameUser);
-        titleUsername.setText(usernameUser);
-        profileName.setText(nameUser);
-        profileEmail.setText(emailUser);
-        profileUsername.setText(usernameUser);
-        profilePassword.setText(passwordUser);
-    }
+//    public void passUserData(){
+//        String email = profileEmail.getText().toString().trim();
 
-    public void passUserData(){
-        String userUsername = profileUsername.getText().toString().trim();
+//        Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+//        intent.putExtra("name", nameFromDB);
+//        intent.putExtra("email", emailFromDB);
+//        intent.putExtra("username", usernameFromDB);
+//        intent.putExtra("password", passwordFromDB);
+//
+//        startActivity(intent);
 
 //        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
 //        Query checkUserDatabase = reference.orderByChild("username").equalTo(userUsername);
@@ -105,5 +120,5 @@ public class ProfileActivity extends AppCompatActivity {
 //
 //            }
 //        });
-    }
+//    }
 }

@@ -5,33 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/gray_bg"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".view.SettingsActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="20dp"
-        android:background="@color/white">
-
-        <TextView
-            android:id="@+id/settings"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:drawableLeft="@drawable/baseline_keyboard_arrow_left_24"
-            android:gravity="center_vertical|start"
-            android:text="Thông báo"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:layout_marginTop="100dp">
 
         <ImageView
             android:id="@+id/profileImg"
@@ -58,7 +33,4 @@
             android:textColor="@color/blue_gradient"
             android:gravity="center"
             android:textSize="13sp" />
-    </LinearLayout>
-
-
 </LinearLayout>

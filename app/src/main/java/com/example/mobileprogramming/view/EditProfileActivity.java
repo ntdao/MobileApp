@@ -4,20 +4,25 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mobileprogramming.R;
+import com.example.mobileprogramming.mockdata.MockData;
+import com.example.mobileprogramming.model.User;
+
+import java.util.List;
 //import com.google.firebase.database.DatabaseReference;
 //import com.google.firebase.database.FirebaseDatabase;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    EditText editName, editEmail, editUsername, editPassword;
+    EditText editName, editEmail, editPassword;
     Button saveButton;
-    String nameUser, emailUser, usernameUser, passwordUser;
+    String nameUser, emailUser, passwordUser;
 //    DatabaseReference reference;
 
     @Override
@@ -29,18 +34,47 @@ public class EditProfileActivity extends AppCompatActivity {
 
         editName = findViewById(R.id.editName);
         editEmail = findViewById(R.id.editEmail);
-        editUsername = findViewById(R.id.editUsername);
         editPassword = findViewById(R.id.editPassword);
         saveButton = findViewById(R.id.saveButton);
 
-        showData();
+//        showData();
+        Intent intent = getIntent();
+        nameUser = intent.getStringExtra("name");
+        emailUser = intent.getStringExtra("email");
+        passwordUser = intent.getStringExtra("password");
+
+        editName.setText(nameUser);
+        editEmail.setText(emailUser);
+        editPassword.setText(passwordUser);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isNameChanged() || isPasswordChanged() || isEmailChanged()){
+                Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
+                if (isNameChanged() || isPasswordChanged() || isEmailChanged()) {
+                    // api getUser by email
+                    List<User> users = MockData.users;
+                    for (User u : users) {
+                        if (u.getEmail().equals(emailUser)) {
+                            u.setName(editName.getText().toString());
+                            u.setPassword(editPassword.getText().toString());
+                            u.setEmail(editEmail.getText().toString());
+                        }
+                    }
+                    Log.i("List user: ", users.toString());
+                    Log.i("List user (mock data): ", MockData.users.toString());
+
+                    // api updateUser
+                    MockData.setUsers(users);
+                    Log.i("List user (mock data): ", MockData.users.toString());
+
+                    intent.putExtra("name", editName.getText().toString());
+                    intent.putExtra("email", editEmail.getText().toString());
+                    intent.putExtra("password", editPassword.getText().toString());
+                    startActivity(intent);
                     Toast.makeText(EditProfileActivity.this, "Saved", Toast.LENGTH_SHORT).show();
                 } else {
+                    finish();
                     Toast.makeText(EditProfileActivity.this, "No Changes Found", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -48,7 +82,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private boolean isNameChanged() {
-        if (!nameUser.equals(editName.getText().toString())){
+        if (!nameUser.equals(editName.getText().toString())) {
 //            reference.child(usernameUser).child("name").setValue(editName.getText().toString());
             nameUser = editName.getText().toString();
             return true;
@@ -58,7 +92,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private boolean isEmailChanged() {
-        if (!emailUser.equals(editEmail.getText().toString())){
+        if (!emailUser.equals(editEmail.getText().toString())) {
 //            reference.child(usernameUser).child("email").setValue(editEmail.getText().toString());
             emailUser = editEmail.getText().toString();
             return true;
@@ -69,7 +103,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
     private boolean isPasswordChanged() {
-        if (!passwordUser.equals(editPassword.getText().toString())){
+        if (!passwordUser.equals(editPassword.getText().toString())) {
 //            reference.child(usernameUser).child("password").setValue(editPassword.getText().toString());
             passwordUser = editPassword.getText().toString();
             return true;
@@ -78,18 +112,16 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
-    public void showData(){
-
-        Intent intent = getIntent();
-
-        nameUser = intent.getStringExtra("name");
-        emailUser = intent.getStringExtra("email");
-        usernameUser = intent.getStringExtra("username");
-        passwordUser = intent.getStringExtra("password");
-
-        editName.setText(nameUser);
-        editEmail.setText(emailUser);
-        editUsername.setText(usernameUser);
-        editPassword.setText(passwordUser);
-    }
+//    public void showData() {
+//
+//        Intent intent = getIntent();
+//
+//        nameUser = intent.getStringExtra("name");
+//        emailUser = intent.getStringExtra("email");
+//        passwordUser = intent.getStringExtra("password");
+//
+//        editName.setText(nameUser);
+//        editEmail.setText(emailUser);
+//        editPassword.setText(passwordUser);
+//    }
 }

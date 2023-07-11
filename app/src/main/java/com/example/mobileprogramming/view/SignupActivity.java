@@ -9,8 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mobileprogramming.R;
+import com.example.mobileprogramming.mockdata.MockData;
+import com.example.mobileprogramming.model.User;
 import com.example.mobileprogramming.utils.ValidateInfo;
 //import com.google.android.gms.tasks.OnCompleteListener;
 //import com.google.android.gms.tasks.Task;
@@ -20,7 +23,7 @@ import com.example.mobileprogramming.utils.ValidateInfo;
 //import com.google.firebase.database.FirebaseDatabase;
 
 public class SignupActivity extends AppCompatActivity {
-    EditText signupName, signupUsername, signupEmail, signupPassword, signupConfirmPassword;
+    EditText signupName, signupEmail, signupPassword, signupConfirmPassword;
     TextView loginRedirectText;
     Button signupButton;
 //    private FirebaseAuth mAuth;
@@ -64,16 +67,6 @@ public class SignupActivity extends AppCompatActivity {
         String password = signupPassword.getText().toString().trim();
         String confirmPassword = signupConfirmPassword.getText().toString().trim();
 
-        // Kiểm tra xem username đã tồn tại hay chưa
-//        Query usernameQuery = mDatabase.orderByChild("username").equalTo(username);
-//        DatabaseReference usernameRef = usernameQuery.getRef();
-//        usernameRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists()) {
-//                    Toast.makeText(SignupActivity.this, "Username đã tồn tại", Toast.LENGTH_SHORT).show();
-//                } else {
-
         boolean check1 = ValidateInfo.isValid(signupName);
         boolean check2 = ValidateInfo.isValidEmail(signupEmail);
         boolean check3 = ValidateInfo.isValid(signupPassword);
@@ -116,5 +109,15 @@ public class SignupActivity extends AppCompatActivity {
 //                            }
 //                        }
 //                    });
+
+        // api register
+        MockData data = new MockData();
+        data.addUser(new User(name, password, email));
+
+        // Hiển thị thông báo thành công và chuyển người dùng đến màn hình chính
+        Toast.makeText(SignupActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+        // Chuyển đến màn hình đăng nhập
+        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 }
