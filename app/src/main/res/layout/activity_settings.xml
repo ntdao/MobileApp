@@ -30,10 +30,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:text="@string/notification"
+        android:text="Cài đặt thông báo"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="18sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp">
+
+
+        <TextView
+            android:id="@+id/mute_notice"
+            android:layout_width="match_parent"
+            android:layout_height="22dp"
+            android:paddingLeft="8dp"
+            android:text="Thông báo"
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/mute_nobutton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="13px"
+            android:text="Có thể cài đặt thông báo trong phần Cài đặt > Thông báo > Smart Home"
+            android:textColor="@color/blue_gradient"
+            android:textSize="12sp" />
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,46 +77,57 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-<!--        <TextView-->
-<!--            android:id="@+id/mute_notice"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:padding="8dp"-->
-<!--            android:text="Tắt tất cả thông báo"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="16sp" />-->
+        <Switch
+            android:id="@+id/mute_notice_button1"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:checked="false"
+            android:gravity="left"
+            android:paddingLeft="8dp"
+            android:text="Không làm phiền"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/mute_button1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="5px"
+            android:text="Sau khi bật tính năng này, bạn sẽ không nhận được thông báo Smart Home từ 23:00 đến 7:00"
+            android:textColor="@color/blue_gradient"
+            android:textSize="12sp"
+            android:layout_marginTop="-20dp"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <Switch
-            android:id="@+id/mute_notice"
+            android:id="@+id/mute_notice_button2"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:padding="8dp"
+            android:layout_height="48dp"
+            android:paddingLeft="8dp"
             android:checked="false"
-            android:text="Tắt tất cả thông báo"
+            android:text="Tắt các đề xuất cá nhân hóa"
             android:gravity="left"
             android:textSize="16sp"/>
-
         <TextView
-            android:id="@+id/notice_device"
+            android:id="@+id/mute_button2"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:drawableRight="@drawable/baseline_keyboard_arrow_right_40"
-            android:gravity="center_vertical|start"
-            android:padding="8dp"
-            android:text="Thiết bị"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/notice_general"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:drawableRight="@drawable/baseline_keyboard_arrow_right_40"
-            android:gravity="center_vertical|start"
-            android:padding="8dp"
-            android:text="Chung"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:layout_height="40dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="5px"
+            android:text="Sau khi tắt tính năng này bạn sẽ không nhận được các đề xuất cá nhân hóa"
+            android:textColor="@color/blue_gradient"
+            android:textSize="12sp"
+            android:layout_marginTop="-20dp"/>
     </LinearLayout>
 
     <TextView
@@ -90,7 +135,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="12dp"
-        android:text="@string/set_interface"
+        android:text="Cài đặt giao diện"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="18sp" />

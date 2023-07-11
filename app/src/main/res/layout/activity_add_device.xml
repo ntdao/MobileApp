@@ -15,13 +15,13 @@
 
         <TextView
             android:id="@+id/add_device"
-            android:layout_width="wrap_content"
+            android:layout_width="171dp"
             android:layout_height="50dp"
             android:drawableLeft="@drawable/baseline_keyboard_arrow_left_24"
-            android:text="Thêm thiết bị"
             android:gravity="center_vertical|start"
-            android:textSize="20sp"
-            android:textColor="@color/black"/>
+            android:text="Thêm thiết bị"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
