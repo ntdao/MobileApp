@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_bg"
-    tools:context=".view.AboutActivity">
+    android:orientation="vertical"
+    tools:context=".view.SettingsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,15 +15,114 @@
         android:background="@color/white">
 
         <TextView
-            android:id="@+id/about"
+            android:id="@+id/settings"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:drawableLeft="@drawable/baseline_keyboard_arrow_left_24"
             android:gravity="center_vertical|start"
-            android:text="@string/about"
+            android:text="About"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
     </LinearLayout>
 
-</FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
+        <TextView
+            android:id="@+id/notice_device"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawableRight="@drawable/baseline_keyboard_arrow_right_40"
+            android:gravity="center_vertical|start"
+            android:padding="8dp"
+            android:text="Privacy Policy"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/notice_general"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawableRight="@drawable/baseline_keyboard_arrow_right_40"
+            android:gravity="center_vertical|start"
+            android:padding="8dp"
+            android:text="Teams of Use"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/notice_community"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawableRight="@drawable/baseline_keyboard_arrow_right_40"
+            android:gravity="center_vertical|start"
+            android:padding="8dp"
+            android:text="Smart Home Community"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/notice_libraries"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawableRight="@drawable/baseline_keyboard_arrow_right_40"
+            android:gravity="center_vertical|start"
+            android:padding="8dp"
+            android:text="Third Party Libraries"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/info_username"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawableLeft="@drawable/reload_svgrepo_com"
+            android:gravity="center_vertical|start"
+            android:padding="8dp"
+            android:text="   Reload Account"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/info_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawableLeft="@drawable/file_send_svgrepo_com"
+            android:gravity="center_vertical|start"
+            android:padding="8dp"
+            android:text="    Send logs"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/info_remove_log"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawableLeft="@drawable/trash"
+            android:gravity="center_vertical|start"
+            android:padding="8dp"
+            android:text="   Remove logs"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>
