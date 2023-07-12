@@ -125,13 +125,12 @@ public class LoginActivity extends AppCompatActivity {
                     // Đăng nhập thành công
                     // Xử lý dữ liệu đăng nhập ở đây
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//            intent.putExtra("name", user.getName());
-//            intent.putExtra("email", user.getEmail());
-//            intent.putExtra("password", user.getPassword());
+//                    Log.i("token",response.body().getToken());
+                    intent.putExtra("token", response.body().getToken());
                     startActivity(intent);
 
                     Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    finish();
+//                    finish();
                 } else {
                     // Xử lý lỗi đăng nhập
                     Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();

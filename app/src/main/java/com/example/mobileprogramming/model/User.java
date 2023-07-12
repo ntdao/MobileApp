@@ -1,62 +1,64 @@
 package com.example.mobileprogramming.model;
 
 public class User {
-    private String name;
-    private String password;
-    private String phoneNumber;
-    private String birthday;
+    private String fullname;
+//    private String password;
+    private String phone_number;
+//    private String birthday;
     private String email;
-    private String address;
+//    private String address;
 
     public User() {
     }
 
     public String getName() {
-        return name;
+        return fullname;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.fullname = fullname;
     }
+    public String getPhoneNumber(){return phone_number;}
+    public void setPhoneNumber(String phoneNumber){this.phone_number=phoneNumber;}
 
-    public String getBirthday() {
-        return birthday;
-    }
+//    public String getBirthday() {
+//        return birthday;
+//    }
+//
+//    public void setBirthday(String birthday) {
+//        this.birthday = birthday;
+//    }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public User(String name, String password, String email) {
-        this.name = name;
-        this.password = password;
+    public User(String name, String phoneNumber, String email) {
+        this.fullname = name;
+        this.phone_number = phoneNumber;
         this.email = email;
     }
 
-    public User(String phoneNumber, String password, String name, String birthday, String email, String address) {
-        this.phoneNumber = phoneNumber;
-        this.password = password;
-        this.name = name;
-        this.birthday = birthday;
-        this.email = email;
-        this.address = address;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//    public User(String phoneNumber, String password, String name, String birthday, String email, String address) {
+//        this.phoneNumber = phoneNumber;
+//        this.password = password;
+//        this.name = name;
+//        this.birthday = birthday;
+//        this.email = email;
+//        this.address = address;
+//    }
+//
+//    public String getPhoneNumber() {
+//        return phoneNumber;
+//    }
+//
+//    public void setPhoneNumber(String phoneNumber) {
+//        this.phoneNumber = phoneNumber;
+//    }
+//
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
 
     public String getEmail() {
         return email;
@@ -66,23 +68,12 @@ public class User {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", birthday='" + birthday + '\'' +
+                "name='" + fullname + '\'' +
                 ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
+                ", phoneNumber='" + phone_number + '\'' +
                 '}';
     }
 }

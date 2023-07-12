@@ -1,6 +1,5 @@
 package com.example.mobileprogramming.view;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,6 +10,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mobileprogramming.R;
+import com.example.mobileprogramming.model.User;
+import com.example.mobileprogramming.network.ApiService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 //import com.google.firebase.database.DataSnapshot;
 //import com.google.firebase.database.DatabaseError;
 //import com.google.firebase.database.DatabaseReference;
@@ -22,6 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     TextView profileName, profileEmail, profilePassword;
     Button editProfile;
+    String nameUser, emailUser, phoneUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +49,41 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        String nameUser = intent.getStringExtra("name");
-        String emailUser = intent.getStringExtra("email");
-        String passwordUser = intent.getStringExtra("password");
+        String token = intent.getStringExtra("token");
+        Log.i("token", token);
+        Call<User> call = ApiService.apiService.getUserProfile("Bearer " + token);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()) {
+                    User user = response.body();
+                    // Xử lý dữ liệu trả về
+                    nameUser = user.getName();
+                    emailUser = user.getEmail();
+                    phoneUser = user.getPhoneNumber();
 
-        profileName.setText(nameUser);
-        profileEmail.setText(emailUser);
-        profilePassword.setText(passwordUser);
+                    profileName.setText(nameUser);
+                    profileEmail.setText(emailUser);
+                    profilePassword.setText(phoneUser);
+                } else {
+                    // Xử lý khi có lỗi từ server
+                    Log.e("error", "error");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                // Xử lý khi có lỗi kết nối
+                Log.e("error", t.getMessage());
+            }
+        });
+//        String nameUser = intent.getStringExtra("name");
+//        String emailUser = intent.getStringExtra("email");
+//        String passwordUser = intent.getStringExtra("password");
+
+//        profileName.setText(nameUser);
+//        profileEmail.setText(emailUser);
+//        profilePassword.setText(passwordUser);
 
 //        showAllUserData();
 
@@ -58,9 +92,9 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                passUserData();
                 Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
-                intent.putExtra("name", nameUser);
+                intent.putExtra("fullname", nameUser);
                 intent.putExtra("email", emailUser);
-                intent.putExtra("password", passwordUser);
+                intent.putExtra("phone_number", phoneUser);
                 startActivity(intent);
             }
         });

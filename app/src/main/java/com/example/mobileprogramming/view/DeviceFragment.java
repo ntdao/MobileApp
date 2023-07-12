@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.mobileprogramming.R;
 
@@ -31,7 +32,20 @@ public class DeviceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_device, container, false);
+//        return inflater.inflate(R.layout.fragment_device, container, false);
+        // Khởi tạo layout cho Fragment
+        View view = inflater.inflate(R.layout.fragment_device, container, false);
+
+        // Tìm kiếm View trong layout của Fragment
+        Button btn1 = view.findViewById(R.id.livingroom);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ListDevice.class));
+            }
+        });
+
+        return view;
     }
 
     @Override

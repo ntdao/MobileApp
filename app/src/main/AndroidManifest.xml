@@ -22,6 +22,24 @@
             android:name=".view.AddDeviceActivity"
             android:exported="false" />
         <activity
+            android:name=".view.ListDevice"
+            android:exported="false" />
+        <activity
+            android:name=".view.Mode"
+            android:exported="false" />
+        <activity
+            android:name=".view.Mode2"
+            android:exported="false" />
+        <activity
+            android:name=".view.Mode3"
+            android:exported="false" />
+        <activity
+            android:name=".view.Mode4"
+            android:exported="false" />
+        <activity
+            android:name=".view.Mode5"
+            android:exported="false" />
+        <activity
             android:name=".view.MainActivity"
             android:exported="false" />
         <activity

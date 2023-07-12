@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.Mode"
+    android:background="#CED9E3">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="20dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/control"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:drawableLeft="@drawable/baseline_keyboard_arrow_left_24"
+            android:gravity="center_vertical|start"
+            android:text="Điều khiển"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/r1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="150dp">
+
+        <RelativeLayout
+            android:id="@+id/a2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+
+            android:background="@drawable/vien">
+
+            <ImageView
+                android:id="@+id/imageLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                app:srcCompat="@drawable/off" />
+        </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnOn"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:text="ON"
+        android:layout_marginTop="350dp"
+        android:layout_marginLeft="110dp"
+        />
+</RelativeLayout>

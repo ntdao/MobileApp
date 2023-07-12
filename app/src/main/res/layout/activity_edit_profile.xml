@@ -78,9 +78,8 @@
                 android:background="@drawable/custom_edittext"
                 android:layout_marginTop="20dp"
                 android:padding="8dp"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:drawableLeft="@drawable/baseline_lock_24"
+                android:hint="Phone Number"
+                android:drawableLeft="@drawable/baseline_local_phone_24"
                 android:drawablePadding="8dp" />
 
             <Button

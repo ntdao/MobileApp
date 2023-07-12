@@ -12,8 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobileprogramming.R;
-import com.example.mobileprogramming.mockdata.MockData;
-import com.example.mobileprogramming.model.User;
+//import com.example.mobileprogramming.mockdata.MockData;
 import com.example.mobileprogramming.utils.ValidateInfo;
 //import com.google.android.gms.tasks.OnCompleteListener;
 //import com.google.android.gms.tasks.Task;
@@ -111,8 +110,8 @@ public class SignupActivity extends AppCompatActivity {
 //                    });
 
         // api register
-        MockData data = new MockData();
-        data.addUser(new User(name, password, email));
+//        MockData data = new MockData();
+//        data.addUser(new User(name, password, email));
 
         // Hiển thị thông báo thành công và chuyển người dùng đến màn hình chính
         Toast.makeText(SignupActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();

@@ -10,20 +10,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.Menu;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.mobileprogramming.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,7 +23,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNavigationView;
-    String name, email, password;
+    String name, email, password, token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +31,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
-        name = intent.getStringExtra("name");
-        email = intent.getStringExtra("email");
-        password = intent.getStringExtra("password");
+//        name = intent.getStringExtra("name");
+//        email = intent.getStringExtra("email");
+//        password = intent.getStringExtra("password");
+        token = intent.getStringExtra("token");
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -176,9 +167,11 @@ public class MainActivity extends AppCompatActivity
         switch (menuItem.getItemId()) {
             case R.id.nav_profile:
                 intent = new Intent(MainActivity.this, ProfileActivity.class);
-                intent.putExtra("name", name);
-                intent.putExtra("email", email);
-                intent.putExtra("password", password);
+                intent.putExtra("token", token);
+                Log.i("token",token);
+//                intent.putExtra("name", name);
+//                intent.putExtra("email", email);
+//                intent.putExtra("password", password);
                 startActivity(intent);
                 break;
             case R.id.nav_settings:
